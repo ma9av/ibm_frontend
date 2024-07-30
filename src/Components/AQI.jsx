@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Output from "./Output";
+import { CityComponent, CountryComponent,  StateComponent } from "./CountryComponent.jsx";
+import {  useLocationContext } from "../Context/LocationContext.jsx";
 
 const api_key = import.meta.env.VITE_API_KEY
 
 function AQI() {
-    const [city, setCity] = useState("")
+    const { cityName } = useLocationContext()
     const [aqi, setAqi] = useState(false)
 
     async function fetchData(city){
@@ -24,31 +26,15 @@ function AQI() {
     <div>
 
     <div className="flex flex-col gap-2">
-        <div className=" "> 
-        <label htmlFor="country"> Enter your country </label>
-        <input type="text" id="country"></input>
-        </div>
+        
+        <CountryComponent />
+        <StateComponent />
+        <CityComponent />
 
-        <div>
-        <label htmlFor="state">Enter your state </label>
-        {/* <input type="text" id="state"></input> */}
-        <select name="Enter your country" id="">
-            <option value="">India</option>
-            <option value="">Bangladesh</option>
-            <option value="">Sri Lanka</option>
-        </select>
-        </div>
-
-        <div>
-        <label htmlFor="city">Enter your city </label>
-        <input type="search" id="city" value={city} onChange={(e)=>{
-            setCity(e.target.value);
-            
-        }}></input>
-        </div>
+        
     </div>
 
-    <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> fetchData(city)}
+    <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> fetchData(cityName)}
     > get aqi </button>
 
     {aqi&& <Output data={aqi}/>}
