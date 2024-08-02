@@ -2,7 +2,8 @@ import CompoundInfo from "./CompoundInfo"
 
 function Card( { compound, values, clicked , setCompound, attr, clickStatus}) {
     const aqi = isNaN(values) ? values.aqi : values
-    
+
+    const unit = compound.includes("PM") ? "ug/m3" : "ppb"
 
     function selectColor(aqi){
 
@@ -26,7 +27,7 @@ function Card( { compound, values, clicked , setCompound, attr, clickStatus}) {
            return 'bg-purple-300'
        }
        if(aqi > 300){
-           return 'bg-pink-950'
+           return 'bg-pink-800'
        }
 
     }
@@ -34,17 +35,18 @@ function Card( { compound, values, clicked , setCompound, attr, clickStatus}) {
     const color = selectColor(aqi)
 
   return (
-    <div className= {`border-2 p-2 border-black rounded-md ${color} ${attr}`}  onClick={()=>{
+    <div className= {`border-2 p-2 border-black rounded-md ${color} ${attr} cursor-pointer text-clip`}  onClick={()=>{
         setCompound(compound)
         clicked(prev => !prev)
     }}>
     {compound === 'overall_aqi' ? <h1>Overall_aqi = {values}</h1> : <div>
     <h1>Compund = {compound}</h1>
-    <h1>concentration = {values.concentration} ppb</h1>
+    <h1>concentration = {values.concentration} {unit}</h1>
     <h1>aqi = {values.aqi} </h1>
     </div>
     }
-    {clickStatus && <CompoundInfo compund={compound}/>}
+
+    {clickStatus && <CompoundInfo compund={compound} unit={unit}/>}
     </div>
   )
 }

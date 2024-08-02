@@ -8,13 +8,11 @@ function Output({ data }) {
   const [clickedCompound, setClickedCompound ] = useState("")
 
   const [ clickedData ] = Object.keys(data).filter(key => key == clickedCompound)
-  // console.log(data[clickedData])
 
   return (
-    <div className="p-5 grid grid-cols-3 gap-3   
-    ">
+    <div className={ clicked ? "p-5 " : "p-5 grid grid-cols-3 gap-3 "}>
         {clicked ?
-        <Card compound={clickedData} values={data[clickedData]} clicked={setClicked} setCompound = {setClickedCompound} attr = "h-64"
+        <Card compound={clickedData} values={data[clickedData]} clicked={setClicked} setCompound = {setClickedCompound} attr = " w-2/3"
         clickStatus={clicked}/> :
         Object.keys(data).map((key, index) =>{
             // console.log(key)

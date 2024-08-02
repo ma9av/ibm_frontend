@@ -2,11 +2,12 @@ import { useState } from "react";
 import Output from "./Output";
 import { CityComponent, CountryComponent,  StateComponent } from "./CountryComponent.jsx";
 import {  useLocationContext } from "../Context/LocationContext.jsx";
+import Navbar from "./Navbar.jsx";
 
 const api_key = import.meta.env.VITE_API_KEY
 
 function AQI() {
-    const { cityName } = useLocationContext()
+    const { cityName, flag } = useLocationContext()
     const [aqi, setAqi] = useState(false)
 
     async function fetchData(city){
@@ -23,19 +24,39 @@ function AQI() {
   }
   
   return (
-    <div>
+    
 
-    <div className="flex flex-col gap-2">
+    <div className="bg-gradient-to-l from-dark-blue to-sky-blue w-screen h-fit md:h-screen sticky ">
+            <Navbar />
+
+        <div className="flex flex-row gap-2 p-5">
+
+            <div className="flex flex-col gap-4 w-1/3  relative">
         
-        <CountryComponent />
-        <StateComponent />
-        <CityComponent />
+            <CountryComponent />
+            <StateComponent />
+            <CityComponent />
+    
+            </div>
+            <div className="w-1/3">
 
-        
-    </div>
+            </div>
 
+            <div className=" w-1/2 flex justify-center">
+                 <span className="text-8xl ">
+                    {flag}
+                    </span>
+            </div>
+
+
+        </div>
+
+        <div className="p-5">
     <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> fetchData(cityName)}
     > get aqi </button>
+
+        </div>
+
 
     {aqi&& <Output data={aqi}/>}
 

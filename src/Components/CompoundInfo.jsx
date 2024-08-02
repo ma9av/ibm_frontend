@@ -1,16 +1,63 @@
 import hazardRange from "../assets/data.js"
-function CompoundInfo({ compund }) {
-    const  conc  = hazardRange[compund]
-  return (
-    <div className="flex flex-col">
-        <span>0-50 {conc[0]}</span>
-        <span>51-100 {conc[1]}</span>
-        <span>101-150 {conc[2]}</span>
-        <span>151-200 {conc[3]}</span>
-        <span>201-300 {conc[4]}</span>
-        <span>300-500 {conc[5]}</span>
-    </div>
+function CompoundInfo({ compund, unit }) {
+    if (compund === 'overall_aqi'){
+      return
+    }else{
+
+      
+      const  conc  = hazardRange[compund]
+      return (
+    <table className="p-4">
+      <thead>
+        <td></td>
+        <td> aqi </td>
+        <td> concentration  ({unit})</td>
+      </thead>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-green-600 "></div>
+        </td>
+        <td> 0-50 </td>
+        <td>{conc[0]}</td>
+      </tr>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-yellow-600 "></div>
+        </td>
+        <td> 51-100 </td>
+        <td>{conc[1]}</td>
+      </tr>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-orange-600 "></div>
+        </td>
+        <td> 101-150 </td>
+        <td>{conc[2]}</td>
+      </tr>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-red-600 "></div>
+        </td>
+        <td> 151-200 </td>
+        <td>{conc[3]}</td>
+      </tr>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-purple-600 "></div>
+        </td>
+        <td> 201-300 </td>
+        <td>{conc[4]}</td>
+      </tr>
+      <tr>
+        <td>
+        <div className="w-4 h-4 bg-pink-950 "></div>
+        </td>
+        <td> 301-500 </td>
+        <td>{conc[5]}</td>
+      </tr>
+    </table>
   )
+}
 }
 
 export default CompoundInfo

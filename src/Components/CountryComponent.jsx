@@ -1,10 +1,11 @@
 import { Country, State, City } from "country-state-city"
 import { useMemo, useState } from "react"
 import { useLocationContext } from "../Context/LocationContext";
+import DropDown from "./DropDown";
 
 
 export function CountryComponent() {
-    const { setCountryCode } = useLocationContext()
+    const { setCountryCode ,setFlag } = useLocationContext()
 
     const [country, setCountry] = useState("")
 
@@ -13,17 +14,15 @@ export function CountryComponent() {
     const [code] = useMemo(()=> countries.filter(entity => entity.name === country),[country])
 
     setCountryCode(code?.isoCode)
+    console.log(code?.flag);
+    setFlag(code?.flag)
 
     return (
-        <div>
-      <input list="countries" type="text" onChange={(e) => setCountry(e.target.value)} value={country}/>
+        <div className=""> 
+              <label htmlFor="con"> Enter your country </label>          
+      <input list="countries" type="text" id="con" onChange={(e) => setCountry(e.target.value)} value={country} className=" bg-blue-200 md:absolute md:right-10 p-1 rounded-lg"/>
       <datalist id="countries">
-       {
-       countries?.map(country => {
-        return(
-            <option value={country.name} ></option>
-        )
-       })}
+        <DropDown values={countries}/>
       </datalist>
     </div>
   )
@@ -41,17 +40,11 @@ export function StateComponent() {
     setStateCode(code?.isoCode)
 
   return (
-    <div>
-      <input type="text" list="states" onChange={(e) => setState(e.target.value)} value={state}/>
+    <div className="">                 
+    <label htmlFor="sta"> Enter your state </label>
+      <input type="text" list="states" id="sta" onChange={(e) => setState(e.target.value)} value={state} className=" bg-blue-200 md:absolute md:right-10 p-1 rounded-lg"/>
       <datalist id="states">
-        {
-            states?.map(state =>{
-                return(
-                    <option value={state.name}></option>
-                )
-            })
-        }
-
+        <DropDown values={states} />
       </datalist>
     </div>
   )
@@ -61,17 +54,11 @@ export function CityComponent(){
     const {countryCode, stateCode, setCityName, cityName } = useLocationContext()
     const cities = useMemo(()=> City.getCitiesOfState(countryCode,stateCode),[stateCode])
     return(
-        <div>
-            <input type="text" list="cities" onChange={(e) => setCityName(e.target.value)} value={cityName}/>
+        <div className=""> 
+          <label htmlFor="cit"> Enter your city </label>
+            <input type="text" list="cities" id="cit" onChange={(e) => setCityName(e.target.value)} value={cityName} className=" bg-blue-200 md:absolute md:right-10 p-1 rounded-lg"/>
             <datalist id="cities">
-                {
-                    cities.map(city=>{
-                        return(
-                            <option value={city.name}></option>
-                        )
-                    })
-                }
-
+                <DropDown values={cities} />
             </datalist>
         </div>
     )
