@@ -26,7 +26,7 @@ function AQI() {
   return (
     
 
-    <div className="bg-gradient-to-l from-dark-blue to-sky-blue w-screen h-fit md:h-screen sticky ">
+    <div className="bg-gradient-to-l from-dark-blue to-sky-blue w-screen h-screen md:h-screen sticky ">
             <Navbar />
 
         <div className="flex flex-row gap-2 p-5">
