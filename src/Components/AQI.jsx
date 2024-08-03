@@ -3,6 +3,7 @@ import Output from "./Output";
 import { CityComponent, CountryComponent,  StateComponent } from "./CountryComponent.jsx";
 import {  useLocationContext } from "../Context/LocationContext.jsx";
 import Navbar from "./Navbar.jsx";
+import Predata from "./Predata.jsx";
 
 const api_key = import.meta.env.VITE_API_KEY
 
@@ -52,13 +53,15 @@ function AQI() {
         </div>
 
         <div className="p-5">
-    <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> fetchData(cityName)}
+    <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> {
+        setAqi(false)
+        fetchData(cityName)}}
     > get aqi </button>
 
         </div>
 
 
-    {aqi&& <Output data={aqi}/>}
+    {aqi ? <Output data={aqi}/> : <Predata />}
 
 
     </div>
