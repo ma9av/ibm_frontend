@@ -10,6 +10,7 @@ const api_key = import.meta.env.VITE_API_KEY
 function AQI() {
     const { cityName, flag } = useLocationContext()
     const [aqi, setAqi] = useState(false)
+    const [shimmer, setShimmer] = useState(false)
 
     async function fetchData(city){
 
@@ -27,12 +28,12 @@ function AQI() {
   return (
     
 
-    <div className="bg-gradient-to-l from-dark-blue to-sky-blue w-screen h-screen md:h-screen sticky ">
+    <div className="h-screen">
             <Navbar />
 
         <div className="flex flex-row gap-2 p-5">
 
-            <div className="flex flex-col gap-4 w-1/3  relative">
+            <div className="flex flex-col gap-4 w-1/3 text-white relative">
         
             <CountryComponent />
             <StateComponent />
@@ -54,6 +55,7 @@ function AQI() {
 
         <div className="p-5">
     <button className= "bg-blue-800 text-white w-20 rounded-lg p-2" onClick={()=> {
+        setShimmer(true)
         setAqi(false)
         fetchData(cityName)}}
     > get aqi </button>
@@ -61,7 +63,7 @@ function AQI() {
         </div>
 
 
-    {aqi ? <Output data={aqi}/> : <Predata />}
+    {aqi ? <Output data={aqi}/> : <Predata shimmer={shimmer}/>}
 
 
     </div>

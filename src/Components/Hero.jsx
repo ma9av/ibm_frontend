@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-r from-dark-blue to-sky-blue text-white h-screen flex items-center justify-center">
+    <div className=" text-white h-screen flex items-center justify-center">
         <div className='absolute right-6 top-2'> About </div>
       <div className="text-center p-10">
         <h1 className="text-5xl font-bold mb-8">Know Your Air</h1>
