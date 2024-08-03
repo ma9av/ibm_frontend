@@ -21,7 +21,12 @@ function AQI() {
       })
   
       const data = await response.json()
-      console.log(data)
+      setShimmer(false)
+      if (data.error){
+        alert(data.error)
+        return
+      }
+
       setAqi(data)
   }
   

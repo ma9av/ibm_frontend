@@ -10,7 +10,7 @@ function Output({ data }) {
   const [ clickedData ] = Object.keys(data).filter(key => key == clickedCompound)
 
   return (
-    <div className={ clicked ? "p-5 " : "p-5 grid grid-cols-3 gap-3 "}>
+    <div className={ clicked ? "p-5 " : "p-5 grid grid-cols-3 gap-3 "}> 
         {clicked ?
         <Card compound={clickedData} values={data[clickedData]} clicked={setClicked} setCompound = {setClickedCompound} attr = " w-2/3"
         clickStatus={clicked}/> :
