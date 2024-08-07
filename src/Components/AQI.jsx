@@ -28,6 +28,7 @@ function AQI() {
       }
 
       setAqi(data)
+
   }
   
   return (
@@ -69,7 +70,7 @@ function AQI() {
 
 
     {aqi ? <Output data={aqi}/> : <Predata shimmer={shimmer}/>}
-
+    {aqi && <p className="text-red-700 text-lg bg-green-300 absolute top-4 right-4 rounded-lg p-2 message"> Click on the cards to know more </p>}
 
     </div>
   )

@@ -4,6 +4,7 @@ import { ContextProvider } from "./Context/LocationContext"
 import { BrowserRouter , Routes, Route } from "react-router-dom"
 import './App.css'
 import Hero from "./Components/Hero"
+import About from "./Components/About"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
                 <Routes>
                  <Route path="/" Component={Hero}/> 
                  <Route path="/dashboard" Component={AQI}/> 
+                 <Route path="/about" Component={About}/> 
                 </Routes>
              </BrowserRouter>
         

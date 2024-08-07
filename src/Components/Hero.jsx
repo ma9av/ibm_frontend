@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <div className=" text-white h-screen flex items-center justify-center">
-        <div className='absolute right-6 top-2'> About </div>
+        <Link className='absolute right-6 top-2' to="/about"> About </Link>
       <div className="text-center p-10">
         <h1 className="text-5xl font-bold mb-8">Know Your Air</h1>
         <p className="text-xl mb-2">Get real-time Air Quality Index (AQI) of different parts of the world,</p>
